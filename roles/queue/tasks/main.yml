@@ -4,3 +4,9 @@
     dest: "/home/{{ deploy_user}}/consul/config/initializers/delayed_job_config.rb"
     owner: "{{ deploy_user }}"
     group: wheel
+
+- name: Start DelayedJobs queue
+  shell: "source /home/{{ deploy_user }}/.rvm/scripts/rvm && RAILS_ENV={{ env }} bin/delayed_job start"
+  args:
+    executable: /bin/bash
+    chdir: /home/{{ deploy_user }}/{{ app_name }}
