@@ -5,9 +5,6 @@ install:
   - sudo apt-get update -y
   - sudo apt-get install -y openssh-server
   - pip3 install ansible
-  - sudo apt-get --purge remove postgresql
-  - sudo apt-get purge postgresql*
-  - sudo apt-get --purge remove postgresql postgresql-doc postgresql-common 
 services: mongodb
 before_script:
   # Set up host inventory
