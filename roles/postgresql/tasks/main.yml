@@ -14,6 +14,30 @@
 - become: true
   become_user: postgres
   block:
+    - name: Get postgres processes
+      shell: "ps aux |grep postgres"
+      register: potgres_processes
+
+    - name: Print postgres processess
+      debug:
+        msg: "{{ potgres_processes.stdout }}"
+
+    - name: Get postgres versions
+      shell: "ls /usr/lib/postgresql"
+      register: potgres_versions
+
+    - name: Print postgres versions
+      debug:
+        msg: "{{ potgres_versions.stdout }}"
+
+    - name: Get PostgreSQL client version
+      shell: "psql --version"
+      register: psql_client_version
+      
+    - name: Print PostgreSQL client version
+      debug:
+        msg: "Using PostgreSQL {{ psql_client_version.stdout }}"
+
     - name: Create PostgreSQL database
       postgresql_db:
         name: "{{ database_name }}"
