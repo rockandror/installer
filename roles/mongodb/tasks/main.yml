@@ -1,5 +1,15 @@
-- name: Install MongoDB
+- name: Uninstall preinstalled MongoDB versions
+  apt:
+    name:
+      - mongodb*
+      - mongodb-org*
+    purge: yes
+    state: absent
+  ignore_errors: yes
+
+- name: Install latest MongoDB version
   apt:
     name:
       - mongodb
       - mongodb-server
+    state: present
