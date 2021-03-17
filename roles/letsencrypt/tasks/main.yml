@@ -30,10 +30,7 @@
         state: present
 
     - name: Ensure python OpenSSL dependencies are installed
-      pip:
-        name: 
-          - pyOpenSSL
-        state: present
+      command: python -m pip install --user pyOpenSSL
 
     - name: Ensure directory exists for local self-signed TLS certs.
       file:
